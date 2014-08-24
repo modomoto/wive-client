@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.version       = Wive::VERSION
   spec.authors       = ["Mathias Fiedler"]
   spec.email         = ["mathias.fiedler@modomoto.de"]
-  spec.summary       = %q{Write a short summary. Required.}
-  spec.description   = %q{Write a longer description. Optional.}
+  spec.summary       = %q{Wive is showing other users viewing a resrouce simultaneously.}
+  spec.description   = %q{Wive is showing other users viewing a resrouce simultaneously.}
   spec.homepage      = ""
   spec.license       = "MIT"
 
