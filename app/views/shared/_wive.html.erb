@@ -24,17 +24,19 @@
     var element = '<a href="{{link_url}}" title="{{username}}"> <img class="icon" alt="{{username}}" src="{{image_url}}"> </a>';
     var socket = io.connect('<%= Wive.server %>');
 
-    socket.emit('user_and_room', '<%= username%>', <%= room_name %>, '<%= image_url %>', '<%= link_url%>');
+    socket.emit('user_and_room', '<%= username%>', '<%= room_name %>', '<%= image_url %>', '<%= link_url%>');
 
     socket.on('room_update', function(users){
       $('#participants-list').empty();
       
       $.each(users, function(index, value){
-          element = element.replace('{{link_url}}', value['link_url']);
-          element = element.replace('{{username}}', value['username']);
-          element = element.replace('{{username}}', value['username']);
-          element = element.replace('{{image_url}}', value['image_url']);
-          $('#participants-list').append($('<li>').html(element));
+          if('<%= username %>' != value['username'] ){
+            element = element.replace('{{link_url}}', value['link_url']);
+            element = element.replace('{{username}}', value['username']);
+            element = element.replace('{{username}}', value['username']);
+            element = element.replace('{{image_url}}', value['image_url']);
+            $('#participants-list').append($('<li>').html(element));
+          }
       });
     });
    
