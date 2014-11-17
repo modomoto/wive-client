@@ -1,44 +1,19 @@
+<script>
+var _wive = _wive || {};
+_wive.username =  '<%= username %>';
+_wive.room_name =  '<%= room_name %>';
+_wive.image_url =  '<%= image_url %>';
+_wive.link_url =  '<%= link_url %>';
+_wive.app_name = '<%= app_name %>';
+_wive.visible = '<%= visible %>';
+(function() {
+    var wv = document.createElement('script'); wv.type = 'text/javascript'; wv.async = true;
+    wv.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + '<%= Wive.server %>/client.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wv, s);
+})();
+</script>
+
 <div id="wive-toolbar" class="">
-  <div class="participants">
-    <ol id="participants-list">
-    </ol>
-  </div>
+
 </div>
 
-
-<!-- Wive Style -->
-  <style type="text/css">
-    #wive-toolbar{position: fixed; bottom: 10px; right: 10px;}
-    #wive-toolbar ol{list-style-type: none}
-    #wive-toolbar ol li{float: left; width: 50px; height: 50px; padding: 7px; background-color: #dddddd; margin:  3px;}
-    #wive-toolbar ol li a{text-decoration: none}
-    #wive-toolbar ol li .icon{width: 50px; height: 50px; font-size: 40px; color: black;}
-  </style>
-<!-- End Wive Style -->
-
-
-
-<script>
-  $( document ).ready(function() {
-    var asset_path = "";
-    var element = '<a href="{{link_url}}" title="{{username}}"> <img class="icon" alt="{{username}}" src="{{image_url}}"> </a>';
-    var socket = io.connect('<%= Wive.server %>');
-
-    socket.emit('user_and_room', '<%= username%>', '<%= room_name %>', '<%= image_url %>', '<%= link_url%>');
-
-    socket.on('room_update', function(users){
-      $('#participants-list').empty();
-      
-      $.each(users, function(index, value){
-          if('<%= username %>' != value['username'] ){
-            element = element.replace('{{link_url}}', value['link_url']);
-            element = element.replace('{{username}}', value['username']);
-            element = element.replace('{{username}}', value['username']);
-            element = element.replace('{{image_url}}', value['image_url']);
-            $('#participants-list').append($('<li>').html(element));
-          }
-      });
-    });
-   
-  });
-</script>

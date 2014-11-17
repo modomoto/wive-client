@@ -3,10 +3,7 @@ require "jquery-rails"
 require "socket.io-rails"
 
 module Wive
-
   mattr_accessor :server
-  @@server = "http://localhost:3855/wiv"
-
 
   class << self
   end
